@@ -1,4 +1,3 @@
 output "vpc_id" {
-    description="The ID of the VPC"
-    value =aws_vpc.mern_vpc.id
+  value = aws_vpc.this["mern_vpc"].id
 }

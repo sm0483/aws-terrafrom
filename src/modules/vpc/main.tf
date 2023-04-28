@@ -1,12 +1,10 @@
-resource "aws_vpc" "mern_vpc" {
-  cidr_block           = var.vpc_cidr_block
-  enable_dns_hostnames = var.dns_hostnames
-  enable_dns_support   = var.dns_support
+resource "aws_vpc" "this" {
+  for_each   = local.vpcs
+  cidr_block = each.value.cidr_block
+  enable_dns_hostnames = each.value.enable_dns_hostnames
+  enable_dns_support=each.value.enable_dns_support
 
-
-  tags = {
-    "Name" = var.vpc_name
-  }
+  tags=each.value.tags
 }
 
 
